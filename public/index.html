@@ -1,0 +1,39 @@
+<html>
+      <body>
+            <script src = "first.js"></script>
+            <form>
+                  Number 1: <input type="text" name="num1"><br>
+                  Number 2: <input type="text" name="num2"><br>
+                  <input type="button" value="Sum" onclick="calcSum()">
+                  Sum: <input type="text" name="sum"><br>
+                  <input type="button" value="Square" onclick="calcSquare()">
+                  Square: <input type="text" name="square1"><br>
+                  <input type="button" value="Square" onclick="calcSquare()">
+                  Square: <input type="text" name="square2"><br>
+            </form>
+
+      </body>
+
+<script>
+
+      function calcSum() {
+            let num1 = document.getElementsByName("num1")[0].value;
+            let num2 = document.getElementsByName("num2")[0].value;
+            console.log("svbsfb",num1, num2);
+            //document.getElementsByName("sum")[0].value = Module._sum(num1, num2);
+            var sum = Module.cwrap("sum","number",["number", "number"]);
+            document.getElementsByName("sum")[0].value = sum(num1,num2);
+      }
+
+      function calcSquare() {
+            let num1 = document.getElementsByName("num1")[0].value;
+            let num2 = document.getElementsByName("num2")[0].value;
+            //document.getElementsByName("square1")[0].value = Module._square(num1);
+            var square = Module.cwrap("square","number",["number"]);
+            document.getElementsByName("square1")[0].value = square(num1);
+            document.getElementsByName("square2")[0].value = square(num2);
+      }
+
+</script>
+
+</html>
